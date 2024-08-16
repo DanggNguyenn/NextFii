@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function lunchRequests()
+    {
+        return $this->hasMany(LunchRequest::class, 'admin_id');
+    }
+
+    public function lunchChoices()
+    {
+        return $this->hasMany(LunchChoice::class);
+    }
 }
