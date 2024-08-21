@@ -17,9 +17,9 @@ class LunchRequest extends Model
         'request_date',
     ];
 
-    public function lunchRequest()
+    public function restaurant()
     {
-        return $this->belongsTo(LunchRequest::class);
+        return $this->belongsTo(Restaurant::class);
     }
 
     public function user()
@@ -27,8 +27,12 @@ class LunchRequest extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function meal()
+    public function lunchchoices()
     {
-        return $this->belongsTo(Meal::class);
+        return $this->hasMany(LunchChoice::class);
+    }
+    public function meals()
+    {
+        return $this->hasMany(Meal::class);
     }
 }

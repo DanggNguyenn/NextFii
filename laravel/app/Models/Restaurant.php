@@ -20,13 +20,8 @@ class Restaurant extends Model
         return $this->belongsTo(User::class, 'admin_id');
     }
 
-    public function restaurant()
+    public function lunchRequests()
     {
-        return $this->belongsTo(Restaurant::class);
-    }
-
-    public function lunchChoices()
-    {
-        return $this->hasMany(LunchChoice::class);
+        return $this->hasMany(LunchRequest::class);
     }
 }

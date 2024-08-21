@@ -15,20 +15,21 @@ class LunchChoice extends Model
         'meal_id',
         'request_time',
         'request_date',
+        'quantity',
     ];
 
-    public function lunchChoice()
+    public function lunchRequest()
     {
-        return $this->belongsTo(LunchChoice::class);
+        return $this->belongsTo(LunchRequest::class, 'lunch_request_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function meal()
     {
-        return $this->belongsTo(Meal::class);
+        return $this->belongsTo(Meal::class,'meal_id');
     }
 }

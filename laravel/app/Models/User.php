@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,7 +46,7 @@ class User extends Authenticatable
 
     public function lunchRequests()
     {
-        return $this->hasMany(LunchRequest::class, 'admin_id');
+        return $this->hasMany(LunchRequest::class, 'role');
     }
 
     public function lunchChoices()

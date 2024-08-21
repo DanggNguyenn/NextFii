@@ -9,37 +9,30 @@
 <body>
     <div class="container mt-5">
         <h2>Edit Lunch Choice</h2>
-        <form action="/update-lunch-choice" method="post">
-            <!-- Hidden field to identify which choice to update -->
-            <input type="hidden" name="choiceId" value="123"> <!-- Thay đổi giá trị này theo ID thực tế -->
+        <form action="/lunchchoice/{{$LunchChoice->id}}" method="POST">
+            @csrf
+        @method('PUT')
+            <!-- Hidden field to identify which request to update -->
+            <input type="hidden" name="requestId" value="123"> <!-- Thay đổi giá trị này theo ID thực tế -->
 
             <div class="form-group">
-                <label for="choiceDate">Date</label>
-                <input type="date" class="form-control" id="choiceDate" name="choiceDate" value="2024-08-16" required> <!-- Thay đổi giá trị value theo ngày thực tế -->
+                <label for="user_id">Id User</label>
+                <input type="number" class="form-control" id="requestuser_id" name="user_id" value="{{$LunchChoice->user_id}}"  required>
             </div>
             <div class="form-group">
-                <label for="choiceTime">Time</label>
-                <input type="time" class="form-control" id="choiceTime" name="choiceTime" value="12:00" required> <!-- Thay đổi giá trị value theo giờ thực tế -->
+                <label for="meal_id">Id Meal</label>
+                <input type="number" class="form-control" id="requestmeal_id" name="meal_id" value="{{$LunchChoice->meal_id}}"  required>
             </div>
             <div class="form-group">
-                <label for="restaurant">Restaurant</label>
-                <select class="form-control" id="restaurant" name="restaurant" required>
-                    <option value="">Select a restaurant</option>
-                    <option value="restaurant1" selected>Restaurant 1</option>
-                    <option value="restaurant2">Restaurant 2</option>
-                    <option value="restaurant3">Restaurant 3</option>
-                </select> <!-- Thay đổi giá trị selected theo nhà hàng thực tế -->
+                <label for="quantity">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{$LunchChoice->quantity}}"  required>
             </div>
-            <div class="form-group">
-                <label for="menuItems">Menu Items</label>
-                <textarea class="form-control" id="menuItems" name="menuItems" rows="4" placeholder="List of menu items" required>Chicken Sandwich, Salad</textarea> <!-- Thay đổi giá trị nội dung theo menu thực tế -->
-            </div>
-            <button type="submit" class="btn btn-primary">Update Choice</button>
+            
+           
+            <button type="submit" class="btn btn-primary">Update Request</button>
         </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <script src="https://maxcdn.bootstra

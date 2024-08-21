@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LunchChoice;
+use App\Models\Restaurant;
 
 class LunchChoiceController extends Controller
 {
@@ -28,7 +29,8 @@ class LunchChoiceController extends Controller
      */
     public function create()
     {
-        return view('LunchChoice.create');   
+        $restaurant = Restaurant::all();
+        return view('LunchChoice.create',compact('restaurant'));   
     }
 
     /*
@@ -40,15 +42,19 @@ class LunchChoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
-            'admin_id' => 'required',
-            'restaurant_id' => 'required',
+            
+            
+            'quantity'=> 'required',
+            'user_id'=> 'required',
+            'meal_id'=> 'required',
         ]);
 
         $LunchChoice = LunchChoice::create([
-            'id' => $request->input('id'),
-            'admin_id' => $request->input('admin_id'),
-            'restaurant_id' => $request->input('restaurant_id'),
+            
+           
+            'quantity'=> $request->input('quantity'),
+            'user_id'=> $request->input('user_id'),
+            'meal_id'=> $request->input('meal_id'),
         ]);
 
         $LunchChoice->save();
@@ -74,10 +80,10 @@ class LunchChoiceController extends Controller
      */
     public function edit($id)
     {
+        $restaurant = Restaurant::all();
         $LunchChoice = LunchChoice::find($id); 
-        return view('lunchchoice.edit')->with('LunchChoice',$LunchChoice);
+        return view('lunchchoice.edit', compact('restaurant'))->with('LunchChoice',$LunchChoice);
     }
-
     /*
      * Update the specified resource in storage.
      *
@@ -88,9 +94,11 @@ class LunchChoiceController extends Controller
     public function update(Request $request, $id)
     {
         $LunchChoice = LunchChoice::where('id',$id)->update([
-            'id' => $request->input('id'),
-            'admin_id' => $request->input('admin_id'),
-            'restaurant_id' => $request->input('restaurant_id'),
+            
+            
+            'quantity'=> $request->input('quantity'),
+            'user_id'=> $request->input('user_id'),
+            'meal_id'=> $request->input('meal_id'),
         ]);
         
         return redirect('/lunchchoice')->with('success', 'LunchChoice has been updated');

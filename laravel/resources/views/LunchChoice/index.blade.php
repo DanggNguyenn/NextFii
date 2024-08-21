@@ -56,7 +56,46 @@
         <span class="sr-only">Toggle navigation</span>
       </a>
 
-      
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="{{asset('AdminLTE-2.4.18')}}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{auth()->user()->name }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="{{asset('AdminLTE-2.4.18')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                <p>
+                    {{auth()->user()->name }}
+                  <small>Member since Aug. 2024</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <form class="d-flex px-5" action="/logout" method="POST">
+                    @csrf
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                  </form>                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -78,7 +117,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>menu</span>
+            <span>mode</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -114,9 +153,9 @@
           <thead>
             <tr>
               <th>Id</th>
-              <th>lunch_requests_id</th>
-              <th>user_id</th>
-              <th>meal_id</th>
+              <th>User id</th>
+              <th>Meal id</th>
+              <th>Quantity</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -125,9 +164,9 @@
             @foreach($LunchChoices as $item)
             <tr>
               <td>{{$item['id']}}</td>
-              <td>{{$item['lunch_requests_id']}}</td>
               <td>{{$item['user_id']}}</td>
               <td>{{$item['meal_id']}}</td>
+              <td>{{$item['quantity']}}</td>
               <td><button><a href='lunchchoice/{{$item['id']}}/edit'>Edit</a></button></td>
               <td>
                 <form action='lunchchoice/{{$item['id']}}' method="POST" style="display:inline;">
